@@ -1,15 +1,15 @@
-const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const userRouter = require('./routes/user');
+const passport = require('passport')
 const app = express();
 const PORT = 3000; 
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
-
+app.use(passport.initialize());
 app.use('/api/user', userRouter);
 
 app.use((err, req, res, next) => {

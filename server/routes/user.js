@@ -13,7 +13,7 @@ router.get('/details', userController.getProfileDetails, (req, res) => {
 });
 
 router.post('/login', authController.login, (req, res) => {
-  res.status(200).send(res.locals.password);
+  res.status(200).send('User Logged In');
 });
 
 router.post('/shelf', userController.getUserID, userController.addShelf, (req, res) => {

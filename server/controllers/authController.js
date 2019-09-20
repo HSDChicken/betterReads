@@ -31,11 +31,22 @@ login: (req, res, next) => {
         res.locals.password = hashedPassword;
         bcrypt.compare(password, res.locals.password)
         .then((res) => {
-          if (res) return next();
-          else console.log('password not in database');
+          if (res) {
+            res.cookie('token', 'youareloggedin')
+            return next();
+          } else console.log('password not in database');
         });
     }
   });
+  },
+
+  checkCookie: (req, res, next) => {
+  const error = 'You must be signed in to view this page';
+  if (req.cookies.token === 'youareloggedin') {
+      return next();
+    } else {
+      return next(error);
+    }
   },
 }
 
