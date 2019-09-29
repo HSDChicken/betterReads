@@ -1,9 +1,11 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import BookContext from './bookContext';
 import Book from './book.jsx';
 //dynamically render books
 
 function Explore(props){
+  const [bookTitle, setBookTitle] = useState('');
+
   const books = useContext(BookContext).bookList;
   const booksArray = [];
   for (let i = 0; i < books.length; i++){
